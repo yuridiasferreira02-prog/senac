@@ -1,0 +1,14 @@
+RewriteEngine On
+Options All -Indexes
+
+RewriteRule "(^|/)\." - [F]
+
+#<FilesMatch "\.(env)$">
+#    Order allow,deny
+#    Deny from all
+#</FilesMatch>
+
+<Files "file.json">
+    Order allow,deny
+    Deny from all
+</Files>
