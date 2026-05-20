@@ -9,11 +9,16 @@ AuthName "Área Protegida"
 AuthUserFile /absolute/path/to/.htpasswd
 Require valid-user
 
-# 2) Alternativa: bloquear todo acesso exceto localhost
-# Descomente as linhas abaixo para permitir apenas localhost
-# Order deny,allow
-# Deny from all
-# Allow from 127.0.0.1 ::1
+# 2) Bloquear todo acesso exceto localhost
+# Compatível com Apache 2.4+ e 2.2 (fallback)
+<IfModule mod_authz_core.c>
+	Require ip 127.0.0.1 ::1
+</IfModule>
+<IfModule !mod_authz_core.c>
+	Order deny,allow
+	Deny from all
+	Allow from 127.0.0.1 ::1
+</IfModule>
 
 # 3) Para produção: ajuste conforme necessário no servidor Apache
 
