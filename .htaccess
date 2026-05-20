@@ -1,0 +1,19 @@
+### Proteção básica via .htaccess
+### 1) Proteção por usuário (Basic Auth)
+### - Crie um arquivo `.htpasswd` com usuários (use `htpasswd -c .htpasswd username`).
+### - Ajuste o caminho absoluto em `AuthUserFile` abaixo para o caminho do seu `.htpasswd`.
+
+AuthType Basic
+AuthName "Área Protegida"
+# Substitua /absolute/path/to/.htpasswd pelo caminho real do arquivo .htpasswd
+AuthUserFile /absolute/path/to/.htpasswd
+Require valid-user
+
+# 2) Alternativa: bloquear todo acesso exceto localhost
+# Descomente as linhas abaixo para permitir apenas localhost
+# Order deny,allow
+# Deny from all
+# Allow from 127.0.0.1 ::1
+
+# 3) Para produção: ajuste conforme necessário no servidor Apache
+
